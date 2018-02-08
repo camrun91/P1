@@ -1,0 +1,14 @@
+{
+  "name": "p1",
+  "version": "1.0.0",
+  "description": "Program P1 for Web Server Programing",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Cameron Llewellyn",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
