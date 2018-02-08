@@ -1,14 +1,22 @@
 const express = require('express')
 const app = express()
 
+global.loginmessage = "Login"
+
 app.get('/', (req, res) => {
     // express automatically detects Content-Type
     res.send(`
         <html>
-            <head><title>Hello</title></head>
-            <body>
-                <h1>Hello World</h1>
-            </body>
+            <head>
+                <title>Login</title>
+            </head>
+                <body>
+                    <form>
+                        username: <input type="username" name="username" value="username"/><br>
+                        Password: <input type="password" name="password" value="password"/><br>
+                        <input type="submit" value="Login"><br>
+                    </form>
+                </body>
         </html>
     `)
 })
