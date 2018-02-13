@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-global.loginmessage = "Login"
+global.loginMessage = "Login"
 
 app.get('/', (req, res) => {
     // express automatically detects Content-Type
@@ -11,9 +11,10 @@ app.get('/', (req, res) => {
                 <title>Login</title>
             </head>
                 <body>
-                    <form>
-                        username: <input type="username" name="username" value="username"/><br>
-                        Password: <input type="password" name="password" value="password"/><br>
+                    <h3>${global.loginMessage}</h3>
+                    <form action="/login">
+                        username: <input type="username" name="username"/><br>
+                        Password: <input type="password" name="password"/><br>
                         <input type="submit" value="Login"><br>
                     </form>
                 </body>
@@ -21,7 +22,16 @@ app.get('/', (req, res) => {
     `)
 })
 
-
+app.get('/login', (req, res) => {
+    let username = req.query.username
+    let password = req.query.password
+    if (password !== 'ppp') {
+        global.loginMessage = 'Password incorrect! Try again!'
+        return res.redirect('/')
+    }
+    global.loginMessage = "Login"
+    res.send(`Username: ${username} Password: ${password}`)
+})
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
