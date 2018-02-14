@@ -30,9 +30,25 @@ app.get('/login', (req, res) => {
         return res.redirect('/')
     }
     global.loginMessage = "Login"
-    res.send(`Username: ${username} Password: ${password}`)
+    res.send(`Hi ${username} Your Password is ${password}<BR>
+    <HTML>
+        </HEAD>
+        <BODY>
+            <BR>Please Choose where to go 
+            <form action="/follow">
+                <input type="radio" name="site"  value="http://cs.uco.edu" checked>CS Webpage 
+                <input type="radio" name="site"  value="http://cs3.uco.edu">Dr. Sung's Home<BR>
+                <input type="radio" name="site" >Input your site http:// <input type="text" name="site"><BR>
+                 <input type="submit" value="GO!" name="submit" >
+            </form>
+        </BODY>
+    </HTML>`)
 })
 
+app.get('/follow',(req,res) => {
+    let site = req.query.test
+    return res.redirect(site)
+})
 const port = process.env.PORT || 3000
 app.listen(port, () => {
     console.log('The server is running at port', port)
