@@ -38,7 +38,7 @@ app.get('/login', (req, res) => {
             <form action="/follow">
                 <input type="radio" name="site"  value="http://cs.uco.edu" checked>CS Webpage 
                 <input type="radio" name="site"  value="http://cs3.uco.edu">Dr. Sung's Home<BR>
-                <input type="radio" name="site" >Input your site http:// <input type="text" name="site"><BR>
+                <input type="radio" name="site" >Input your site http:// <input type="text" name="othersite"><BR>
                  <input type="submit" value="GO!" name="submit" >
             </form>
         </BODY>
@@ -46,8 +46,13 @@ app.get('/login', (req, res) => {
 })
 
 app.get('/follow',(req,res) => {
-    let site = req.query.test
-    return res.redirect(site)
+    let site = req.query.site
+    let othersite = req.query.othersite
+    if(othersite == "")
+        return res.redirect(site)
+    else
+        return res.redirect("http://"+othersite)
+    
 })
 const port = process.env.PORT || 3000
 app.listen(port, () => {
